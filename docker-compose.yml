@@ -1,27 +1,27 @@
 
 version: "3.8"
 services:
-  postgres-57349:
+  postgres-57348:
     image: postgres:13
     environment:
       POSTGRES_USER: notesadmin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: notesapi
     ports:
-      - '5433:5432'
+      - '57348:5432'
     volumes:
       - ./scripts/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
-      - db-57349:/var/lib/postgresql/data
+      - db-57348:/var/lib/postgresql/data
 
-  vteachers-app-49158:
+  vteachers-app-49157:
     build:
       context: .
     depends_on:
-      - postgres-57349
+      - postgres-57348
     ports:
-      - '4001:4000'
+      - '49157:4000'
     environment:
-      DB_HOST: postgres-57349
+      DB_HOST: postgres-57348
       PORT: 4000
       HOST: localhost
     volumes:
@@ -33,4 +33,4 @@ services:
       - ./credentials.js:/opt/vteachers-app/credentials.js
 
 volumes:
-  db-57349:
+  db-57348:
